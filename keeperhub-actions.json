@@ -3,7 +3,7 @@
     {
       "id": "matcha.getQuote",
       "name": "Get Token Swap Quote",
-      "description": "Get a price quote for a token swap from 0x Protocol",
+      "description": "Adapter-backed Matcha action that gets a price quote for a token swap from 0x Protocol",
       "category": "defi",
       "inputs": {
         "type": "object",
@@ -57,7 +57,7 @@
     {
       "id": "matcha.getSwap",
       "name": "Get Swap Transaction",
-      "description": "Get the transaction data for executing a token swap",
+      "description": "Adapter-backed Matcha action that gets the transaction data for executing a token swap",
       "category": "defi",
       "inputs": {
         "type": "object",
@@ -120,7 +120,7 @@
     {
       "id": "matcha.getPrice",
       "name": "Get Token Price",
-      "description": "Get the current price of a token",
+      "description": "Adapter-backed Matcha action that gets the current price of a token",
       "category": "defi",
       "inputs": {
         "type": "object",
@@ -154,7 +154,7 @@
     {
       "id": "matcha.createPriceAlert",
       "name": "Create Price Alert",
-      "description": "Create an alert that triggers when token price reaches a target",
+      "description": "Adapter-backed Matcha action that creates an alert when token price reaches a target",
       "category": "defi",
       "inputs": {
         "type": "object",
@@ -201,7 +201,7 @@
     {
       "id": "matcha.checkAlerts",
       "name": "Check Active Alerts",
-      "description": "Check all price alerts and return triggered ones",
+      "description": "Adapter-backed Matcha action that checks all price alerts and returns triggered ones",
       "category": "defi",
       "inputs": {
         "type": "object",

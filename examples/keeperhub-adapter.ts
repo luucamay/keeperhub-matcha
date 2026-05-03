@@ -1,4 +1,4 @@
-import { MatchaKeeperHubAdapter } from '../src/keeperHubAdapter';
+import { MatchaKeeperHubAdapter } from '../src';
 
 /**
  * Example: Using the KeeperHub Adapter for workflow integration

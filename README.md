@@ -77,8 +77,10 @@ if (triggered.length > 0) {
 
 ### KeeperHub Integration
 
+These KeeperHub action IDs are intended to be routed through the exported adapter so KeeperHub can call your wrapper-backed Matcha logic.
+
 ```typescript
-import { MatchaKeeperHubAdapter } from './src/keeperHubAdapter';
+import { MatchaKeeperHubAdapter } from './src';
 
 const adapter = new MatchaKeeperHubAdapter({
   chainId: 1,
