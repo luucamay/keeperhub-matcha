@@ -202,6 +202,66 @@ try {
 }
 ```
 
+## Testing & Deployment
+
+### Deployed Service
+
+The service is deployed on Render and available at:
+- **Base URL:** `https://keeperhub-matcha.onrender.com`
+- **Health Check:** `https://keeperhub-matcha.onrender.com/health`
+
+**Test the live service:**
+
+```bash
+# Health check
+curl https://keeperhub-matcha.onrender.com/health
+
+# Get a price quote (mock mode)
+curl -X POST https://keeperhub-matcha.onrender.com/api/adapter/matcha/getPrice \
+  -H "Content-Type: application/json" \
+  -d '{
+    "token": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "baseToken": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+  }'
+
+# Get a swap quote (mock mode)
+curl -X POST https://keeperhub-matcha.onrender.com/api/adapter/matcha/getQuote \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sellToken": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "buyToken": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "sellAmount": "1000000000"
+  }'
+```
+
+**Endpoints:**
+- `GET  /health` - Health check
+- `POST /api/adapter/handleAction` - Generic adapter action handler
+- `POST /api/adapter/matcha/getPrice` - Get token price
+- `POST /api/adapter/matcha/getQuote` - Get swap quote
+- `POST /api/adapter/matcha/getSwap` - Get swap transaction data
+- `POST /api/adapter/matcha/createPriceAlert` - Create price alert
+- `POST /api/adapter/matcha/checkAlerts` - Check active alerts
+
+### Local Testing
+
+```bash
+# Install dependencies
+npm install
+
+# Build
+npm run build
+
+# Run in mock mode
+npm run start:mock
+
+# Run in development (with auto-reload)
+npm run start:mock:dev
+
+# Test local endpoint
+curl http://localhost:3000/health
+```
+
 ## Development
 
 ```bash
