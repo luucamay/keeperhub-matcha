@@ -1,0 +1,244 @@
+{
+  "actions": [
+    {
+      "id": "matcha.getQuote",
+      "name": "Get Token Swap Quote",
+      "description": "Get a price quote for a token swap from 0x Protocol",
+      "category": "defi",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "sellToken": {
+            "type": "string",
+            "description": "Token address or symbol to sell (e.g., 0x... or USDC)"
+          },
+          "buyToken": {
+            "type": "string",
+            "description": "Token address or symbol to buy (e.g., 0x... or DAI)"
+          },
+          "sellAmount": {
+            "type": "string",
+            "description": "Amount of sellToken in wei (e.g., 1000000000000000000 for 1 token)"
+          },
+          "slippagePercentage": {
+            "type": "number",
+            "description": "Maximum acceptable slippage percentage (default: 1)",
+            "default": 1
+          },
+          "takerAddress": {
+            "type": "string",
+            "description": "Address that will execute the swap (optional)"
+          }
+        },
+        "required": ["sellToken", "buyToken", "sellAmount"]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "string",
+            "description": "Quoted price"
+          },
+          "buyAmount": {
+            "type": "string",
+            "description": "Expected amount of buyToken to receive"
+          },
+          "estimatedPriceImpact": {
+            "type": "string",
+            "description": "Estimated price impact percentage"
+          },
+          "sources": {
+            "type": "array",
+            "description": "Liquidity sources used for the quote"
+          }
+        }
+      }
+    },
+    {
+      "id": "matcha.getSwap",
+      "name": "Get Swap Transaction",
+      "description": "Get the transaction data for executing a token swap",
+      "category": "defi",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "sellToken": {
+            "type": "string",
+            "description": "Token address or symbol to sell"
+          },
+          "buyToken": {
+            "type": "string",
+            "description": "Token address or symbol to buy"
+          },
+          "sellAmount": {
+            "type": "string",
+            "description": "Amount of sellToken in wei"
+          },
+          "slippagePercentage": {
+            "type": "number",
+            "description": "Maximum acceptable slippage percentage",
+            "default": 1
+          },
+          "takerAddress": {
+            "type": "string",
+            "description": "Address executing the swap"
+          }
+        },
+        "required": ["sellToken", "buyToken", "sellAmount", "takerAddress"]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "type": "object",
+            "properties": {
+              "to": {
+                "type": "string",
+                "description": "Contract address to send transaction to"
+              },
+              "from": {
+                "type": "string",
+                "description": "Address executing the transaction"
+              },
+              "data": {
+                "type": "string",
+                "description": "Encoded function data"
+              },
+              "value": {
+                "type": "string",
+                "description": "ETH value to send"
+              }
+            }
+          },
+          "buyAmount": {
+            "type": "string",
+            "description": "Expected buyToken amount"
+          }
+        }
+      }
+    },
+    {
+      "id": "matcha.getPrice",
+      "name": "Get Token Price",
+      "description": "Get the current price of a token",
+      "category": "defi",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token address or symbol (e.g., USDC, DAI)"
+          },
+          "baseToken": {
+            "type": "string",
+            "description": "Base token for price (default: ETH)",
+            "default": "ETH"
+          }
+        },
+        "required": ["token"]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "string",
+            "description": "Current token price"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of the price"
+          }
+        }
+      }
+    },
+    {
+      "id": "matcha.createPriceAlert",
+      "name": "Create Price Alert",
+      "description": "Create an alert that triggers when token price reaches a target",
+      "category": "defi",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "alertId": {
+            "type": "string",
+            "description": "Unique identifier for the alert"
+          },
+          "sellToken": {
+            "type": "string",
+            "description": "Token to monitor"
+          },
+          "buyToken": {
+            "type": "string",
+            "description": "Base token for price comparison",
+            "default": "ETH"
+          },
+          "condition": {
+            "type": "string",
+            "enum": ["above", "below"],
+            "description": "Alert triggers when price goes above or below target"
+          },
+          "targetPrice": {
+            "type": "string",
+            "description": "Target price to alert at"
+          }
+        },
+        "required": ["alertId", "sellToken", "condition", "targetPrice"]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "alertId": {
+            "type": "string",
+            "description": "Created alert ID"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the alert (active)"
+          }
+        }
+      }
+    },
+    {
+      "id": "matcha.checkAlerts",
+      "name": "Check Active Alerts",
+      "description": "Check all price alerts and return triggered ones",
+      "category": "defi",
+      "inputs": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputs": {
+        "type": "array",
+        "description": "Array of triggered alerts with current prices"
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "id": "matcha.priceAlert",
+      "name": "Price Alert Triggered",
+      "description": "Triggers when a monitored token price reaches the target",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "alertId": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "currentPrice": {
+            "type": "string"
+          },
+          "targetPrice": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string",
+            "enum": ["above", "below"]
+          }
+        }
+      }
+    }
+  ]
+}

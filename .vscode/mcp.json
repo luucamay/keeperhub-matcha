@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"keeperhub": {
+			"url": "https://app.keeperhub.com/mcp",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}
