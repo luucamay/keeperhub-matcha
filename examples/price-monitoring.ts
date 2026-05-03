@@ -6,6 +6,7 @@ import { MatchaWrapper } from '../src/wrapper';
 async function examplePriceMonitoring() {
   const matcha = new MatchaWrapper({
     chainId: 1,
+    mock: true,
   });
 
   // Get current price
@@ -27,6 +28,7 @@ async function examplePriceMonitoring() {
 async function examplePriceAlerts() {
   const matcha = new MatchaWrapper({
     chainId: 1,
+    mock: true,
   });
 
   console.log('\nCreating price alerts...\n');

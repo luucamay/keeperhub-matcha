@@ -102,7 +102,7 @@ Get a price quote for a token swap.
 - `buyToken` (string): Token to buy (address or symbol)
 - `sellAmount` (string): Amount in wei
 - `slippagePercentage` (number, optional): Max slippage (default: 1%)
-- `takerAddress` (string, optional): Address executing swap
+- `takerAddress` (string, optional): Address executing swapLicense
 
 **Outputs:**
 - `price`: Quoted price

@@ -6,6 +6,7 @@ import { MatchaWrapper } from '../src/wrapper';
 async function exampleGetQuote() {
   const matcha = new MatchaWrapper({
     chainId: 1, // Ethereum mainnet
+    mock: true,
   });
 
   try {
@@ -32,6 +33,7 @@ async function exampleGetQuote() {
 async function exampleGetSwap() {
   const matcha = new MatchaWrapper({
     chainId: 1,
+    mock: true,
   });
 
   try {

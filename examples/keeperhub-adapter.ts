@@ -6,6 +6,7 @@ import { MatchaKeeperHubAdapter } from '../src/keeperHubAdapter';
 async function exampleKeeperHubAdapter() {
   const adapter = new MatchaKeeperHubAdapter({
     chainId: 1,
+    mock: true,
   });
 
   console.log('=== KeeperHub Adapter Examples ===\n');

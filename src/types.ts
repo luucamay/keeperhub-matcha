@@ -92,6 +92,7 @@ export interface MatchaWrapperConfig {
   timeout?: number;
   affiliateAddress?: string;
   feePercentage?: number;
+  mock?: boolean;
 }
 
 export interface MatchaError extends Error {
