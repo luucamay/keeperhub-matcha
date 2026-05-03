@@ -2,7 +2,7 @@
   "name": "keeperhub-matcha-wrapper",
   "version": "0.1.0",
   "description": "KeeperHub wrapper for 0x Protocol (Matcha)",
-  "main": "dist/index.js",
+  "main": "dist/src/server.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
